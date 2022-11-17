@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
-        <RootNamespace>TemplateMod</RootNamespace>
+        <RootNamespace>Owoify</RootNamespace>
         <Configurations>Debug;Release</Configurations>
         <Nullable>enable</Nullable>
-        <AssemblyName>TemplateMod</AssemblyName>
+        <AssemblyName>Owoify</AssemblyName>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
     

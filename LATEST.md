@@ -1,1 +1,1 @@
-When you push a tag to GitHub, the contents of this file will become your release message
+﻿Fixes lag with hitboxes deactivated. Sorry bout' that!
