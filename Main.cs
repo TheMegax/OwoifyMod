@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BTD_Mod_Helper;
@@ -35,12 +36,14 @@ namespace Owoify
                 if (tokens.Length == 1) continue;
                 if (string.IsNullOrEmpty(tokens[0])) continue;
                 if (string.IsNullOrEmpty(tokens[1])) continue;
-                    
+
+                var endsWithQuotes = Reverse(tokens[1])[tokens.Length-1].Equals('\"'); // Don't ask me why, strings are being dumb today
+
                 if (tokens[1].StartsWith("\""))
                 {
                     key = tokens[0];
                     tokens[1] = tokens[1].TrimStart('"');
-                    if (tokens[1].EndsWith("\""))
+                    if (endsWithQuotes)
                     {
                         tokens[1] = tokens[1].TrimEnd('"');
                         chainValues.Add(tokens[1]);
@@ -51,7 +54,7 @@ namespace Owoify
                         continue;
                     }
                 }
-                else if (tokens[1].EndsWith("\""))
+                else if (endsWithQuotes)
                 {
                     tokens[1] = tokens[1].TrimEnd('"');
                     chainValues.Add(tokens[1]);
@@ -64,7 +67,7 @@ namespace Owoify
                 
                 var valueString = chainValues.Aggregate("", (current, value) => current + (value + "\n")); 
                 valueString = valueString.TrimEnd('\n'); 
-                valueString = Owoifier.Owoify(valueString);
+                valueString = Owoifier.Owoify(valueString, Owoifier.OwoifyLevel.Uwu);
                 
                 Dict.Add(key, valueString); 
                 chainValues.Clear();
@@ -75,6 +78,13 @@ namespace Owoify
         public static Dictionary<string, string> GetDictionary()
         {
             return Dict;
+        }
+
+        private static string Reverse( string s)
+        {
+            var charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }

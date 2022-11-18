@@ -6,11 +6,9 @@ namespace Owoify.Owoify_Net
     internal static partial class Utility
     {
         private static readonly string[] Faces = {
-            "(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^", "(* ^ ω ^)",
-            "(⌒ω⌒)", "ヽ(*・ω・)ﾉ", "(o´∀`o)", "(o･ω･o)", "＼(＾▽＾)／",
-            "(*^ω^)", "(◕‿◕✿)", "(◕ᴥ◕)", "ʕ•ᴥ•ʔ", "ʕ￫ᴥ￩ʔ", "(*^.^*)",
-            "(｡♥‿♥｡)", "OwO", "uwu", "uvu", "UvU", "(*￣з￣)", "(つ✧ω✧)つ",
-            "(/ =ω=)/", "(╯°□°）╯︵ ┻━┻", "┬─┬ ノ( ゜-゜ノ)", "¯\\_(ツ)_/¯",
+            "(・`ω´・)", ";;w;;", "owo", "UwU", ">w<", "^w^", "(* ^ ω ^)"
+            ,"(oωo)", "(*^ω^)", "ʕ•ᴥ•ʔ", "(*^.^*)","OwO", "uwu", "uvu", 
+            "UvU", "(/ =ω=)/"
         };
 
         private static readonly Regex OToOwO = new Regex(@"o");
@@ -23,8 +21,7 @@ namespace Owoify.Owoify_Net
         private static readonly Regex ReadToWeadLower = new Regex(@"read");
         private static readonly Regex BracketsToStarTrailsFore = new Regex(@"[({<]");
         private static readonly Regex BracketsToStarTrailsRear = new Regex(@"[)}>]");
-        private static readonly Regex PeriodCommaExclamationSemicolonToKaomojisFirst = new Regex(@"[.,](?![0-9])");
-        private static readonly Regex PeriodCommaExclamationSemicolonToKaomojisSecond = new Regex(@"[!;]+");
+        private static readonly Regex PeriodCommaExclamationSemicolonToKaomojisSecond = new Regex(@"[!]+");
         private static readonly Regex ThatToDatLower = new Regex(@"that");
         private static readonly Regex ThatToDatUpper = new Regex(@"That");
         private static readonly Regex ThToFLower = new Regex(@"[Tt]h(?![Ee])");
@@ -103,8 +100,7 @@ namespace Owoify.Owoify_Net
         private static Word MapPeriodCommaExclamationSemicolonToKaomojis(Word input)
         {
             var rng = new Random();
-            return input.Replace(PeriodCommaExclamationSemicolonToKaomojisFirst, () => " " + Faces[rng.Next(0, Faces.Length)])
-                .Replace(PeriodCommaExclamationSemicolonToKaomojisSecond, () => " " + Faces[rng.Next(0, Faces.Length)]);
+            return input.Replace(PeriodCommaExclamationSemicolonToKaomojisSecond, () => " " + Faces[rng.Next(0, Faces.Length)]);
         }
 
         private static Word MapThatToDat(Word input)
